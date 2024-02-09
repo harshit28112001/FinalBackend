@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dashboard")
-@CrossOrigin(allowedHeaders ="*",origins="http://localhost:4200")
+@CrossOrigin("*")
 public class dashboardController
 {
     @Autowired
@@ -27,7 +27,6 @@ public class dashboardController
     {
         return new ResponseEntity<>(service.addBlog(model), HttpStatus.CREATED);
     }
-    @CrossOrigin(allowedHeaders ="*",origins="http://localhost:4200")
     @GetMapping("/showBlogs")
     public ResponseEntity<?> shoB()
     {

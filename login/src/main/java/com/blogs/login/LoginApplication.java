@@ -1,10 +1,10 @@
 package com.blogs.login;
 import com.blogs.login.filter.filter;
-import com.fasterxml.jackson.core.filter.TokenFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,6 +20,17 @@ public class LoginApplication {
 		filterReg.setFilter(new filter());
 		filterReg.addUrlPatterns("/auth/getAll");
 		return filterReg;
+	}
+	@Configuration
+	public class CorsConfiguration implements WebMvcConfigurer {
+
+		@Override
+		public void addCorsMappings(CorsRegistry registry) {
+			registry.addMapping("/**")
+					.allowedOrigins("http://loginharshit.itcblogs.xyz")
+					.allowedMethods("GET", "POST", "PUT", "DELETE");
+		}
+
 	}
 
 
